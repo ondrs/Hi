@@ -19,7 +19,7 @@ So if you are not sure, leave it blank.
 
     $hi = new Hi('surname');
 
-And get you greeting
+And get your greeting
 
     $greeting = $hi->getGreeting('plšek');
 
