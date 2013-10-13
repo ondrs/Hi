@@ -18,8 +18,8 @@ Create a new Hi instance. You can specify if you are looking for a name or a sur
 
     $hi = new Hi(Hi::TYPE_SURNAME);
 
-Call appropriate method (mr() or ms()) according to assumed gender. The second parameter is optional.
-If you are not sure about the gender, call your instance with a to() method.
+Call appropriate method (mr() or ms()) according to assumed gender.
+If you are not sure about the gender, call the method to() on your instance.
 
     $greeting = $hi->mr('plšek');
 
