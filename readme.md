@@ -15,13 +15,13 @@ composer.json
 
 
 Create a new Hi instance. You can specify if you are looking for a name or a surname. The constructor parameter is optional.
-So if you are not sure, leave it blank.
 
     $hi = new Hi(Hi::TYPE_SURNAME);
 
-Call directly your $hi instance to get your greeting. The second parameter is optional.
+Call appropriate method (mr() or ms()) according to assumed gender. The second parameter is optional.
+If you are not sure about the gender, call your instance with a to() method.
 
-    $greeting = $hi('plšek', Hi::SEX_MALE);
+    $greeting = $hi->mr('plšek');
 
 You will receive an sdtClass object with 4 properties or a FALSE in the case that greeting generator have not been successful.
 
@@ -29,7 +29,7 @@ You will receive an sdtClass object with 4 properties or a FALSE in the case tha
        nominativ => "Plšek" (6)
        vocativ => "Plšku" (6)
        type => "surname" (7)
-       sex => "male" (4)
+       gender => "male" (4)
     }
 
 In the application you can get your greeting via vocativ property.

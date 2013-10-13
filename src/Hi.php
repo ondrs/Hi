@@ -22,8 +22,8 @@ class Hi
     const TYPE_NAME = 'name';
     const TYPE_SURNAME = 'surname';
 
-    const SEX_MALE = 'male';
-    const SEX_FEMALE = 'female';
+    const GENDER_MALE = 'male';
+    const GENDER_FEMALE = 'female';
 
 
     /**
@@ -55,18 +55,38 @@ class Hi
 
     /**
      * @param string $name
-     * @param null|string $sex
      * @return bool|string
      */
-    public function __invoke($name, $sex = NULL)
+    public function mr($name)
+    {
+        return $this->to($name, self::GENDER_MALE);
+    }
+
+
+    /**
+     * @param string $name
+     * @return bool|string
+     */
+    public function ms($name)
+    {
+        return $this->to($name, self::GENDER_FEMALE);
+    }
+
+
+    /**
+     * @param string $name
+     * @param null|string $gender
+     * @return bool|string
+     */
+    public function to($name, $gender = NULL)
     {
         $url = $this->url . '?name=' . urlencode($name);
 
         if($this->type !== NULL)
             $url .= '&type=' . urlencode($this->type);
 
-        if($sex !== NULL)
-            $url .= '&sex=' . urlencode($sex);
+        if($gender !== NULL)
+            $url .= '&sex=' . urlencode($gender);
 
         $json = $this->fetchUrl($url);
 
