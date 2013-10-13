@@ -1,7 +1,7 @@
 Hi
 ==============
 
-Czech names and surnames greeting generator SDK
+Czech names and surnames greeting generator SDK.
 Service is available at the url http://hi.ondraplsek.cz
 
 
