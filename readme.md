@@ -19,7 +19,7 @@ So if you are not sure, leave it blank.
 
     $hi = new Hi(Hi::TYPE_SURNAME);
 
-And get your greeting
+Call directly your $hi instance to get your greeting. The second parameter is optional.
 
     $greeting = $hi('plšek', Hi::SEX_MALE);
 
