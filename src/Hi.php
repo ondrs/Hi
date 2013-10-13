@@ -16,8 +16,14 @@ class Hi
     /** @var string */
     private $url = 'http://hi.ondraplsek.cz';
 
-    /** @var null|string  */
+    /** @var null|string */
     private $type;
+
+    const TYPE_NAME = 'name';
+    const TYPE_SURNAME = 'surname';
+
+    const SEX_MALE = 'male';
+    const SEX_FEMALE = 'female';
 
 
     /**
@@ -49,8 +55,8 @@ class Hi
 
     /**
      * @param string $name
-     * @param string $sex
-     * @return bool|\stdClass
+     * @param null|string $sex
+     * @return bool|string
      */
     public function getGreeting($name, $sex = NULL)
     {
@@ -59,37 +65,13 @@ class Hi
         if($this->type !== NULL)
             $url .= '&type=' . urlencode($this->type);
 
-        if($sex === NULL)
-            $sex = $this->detectSex($name);
-
-        if($sex)
+        if($sex !== NULL)
             $url .= '&sex=' . urlencode($sex);
 
         $json = $this->fetchUrl($url);
 
         if($json->success)
             return $json->results[0];
-        else
-            return FALSE;
-    }
-
-
-    /**
-     * @param $name
-     * @return bool|string
-     * @throws Exception
-     */
-    public function detectSex($name)
-    {
-        $url = $this->url . '?name=' . urlencode($name);
-
-        if($this->type !== NULL)
-            $url .= '&type=' . urlencode($this->type);
-
-        $json = $this->fetchUrl($url);
-
-        if($json->success)
-            return $json->results[0]->sex;
         else
             return FALSE;
     }

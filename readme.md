@@ -1,7 +1,7 @@
 Hi
 ==============
 
-Czech names and surnames greeting generator PHP SDK.
+Czech names and surnames greeting generator API PHP wrapper.
 Service is available at the url http://hi.ondraplsek.cz
 
 
@@ -14,10 +14,10 @@ composer.json
     "ondrs/hi": "dev-master"
 
 
-Create new Hi instance. You can spacify if you are looking for a name or a surname. The constructor parameter is optional.
+Create a new Hi instance. You can spacify if you are looking for a name or a surname. The constructor parameter is optional.
 So if you are not sure, leave it blank.
 
-    $hi = new Hi('surname');
+    $hi = new Hi(Hi::TYPE_SURNAME);
 
 And get your greeting
 
