@@ -1,8 +1,8 @@
 {
     "name": "ondrs/hi",
     "type": "library",
-    "description": "Greeting generator of czech names and surnames SDK",
-    "keywords": ["czech", "greeting", "generator", "name", "surname"],
+    "description": "Czech names and surnames greeting generator SDK",
+    "keywords": ["czech", "greeting", "generator", "name", "surname", "sdk"],
     "homepage": "http://ondraplsek.cz",
     "license": ["BSD-3", "GPL-2.0", "GPL-3.0"],
     "authors": [{
