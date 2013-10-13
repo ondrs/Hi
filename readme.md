@@ -11,7 +11,7 @@ Instalation
 
 composer.json
 
-    "ondrs/internationalize": "dev-master"
+    "ondrs/hi": "dev-master"
 
 
 Create new Hi instance. You can spacify if you are looking for a name or a surname. The constructor parameter is optional.
