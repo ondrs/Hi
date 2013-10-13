@@ -14,14 +14,14 @@ composer.json
     "ondrs/hi": "dev-master"
 
 
-Create a new Hi instance. You can spacify if you are looking for a name or a surname. The constructor parameter is optional.
+Create a new Hi instance. You can specify if you are looking for a name or a surname. The constructor parameter is optional.
 So if you are not sure, leave it blank.
 
     $hi = new Hi(Hi::TYPE_SURNAME);
 
 And get your greeting
 
-    $greeting = $hi->getGreeting('plšek');
+    $greeting = $hi('plšek', Hi::SEX_MALE);
 
 You will receive an sdtClass object with 4 properties or a FALSE in the case that greeting generator have not been successful.
 

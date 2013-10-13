@@ -58,7 +58,7 @@ class Hi
      * @param null|string $sex
      * @return bool|string
      */
-    public function getGreeting($name, $sex = NULL)
+    public function __invoke($name, $sex = NULL)
     {
         $url = $this->url . '?name=' . urlencode($name);
 
