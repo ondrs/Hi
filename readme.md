@@ -13,6 +13,8 @@ composer.json
 
     "ondrs/hi": "dev-master"
 
+Usage
+-----
 
 Create a new Hi instance. You can specify if you are looking for a name or a surname. The constructor parameter is optional.
 
