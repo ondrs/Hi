@@ -86,7 +86,7 @@ class Hi
             $url .= '&type=' . urlencode($this->type);
 
         if($gender !== NULL)
-            $url .= '&sex=' . urlencode($gender);
+            $url .= '&gender=' . urlencode($gender);
 
         $json = $this->fetchUrl($url);
 
