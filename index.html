@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Hi API doukementace : Generátor oslovení pro česká jména a příjmení" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Hi API doukementace</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ondrs/Hi">View on GitHub</a>
+
+          <h1 id="project_title">Hi API doukementace</h1>
+          <h2 id="project_tagline">Generátor oslovení pro česká jména a příjmení</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/ondrs/Hi/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/ondrs/Hi/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="hi" class="anchor" href="#hi"><span class="octicon octicon-link"></span></a>Hi</h1>
+
+<p>Generátor oslovení pro česká jména a příjmení
+Služba je dostupná na adresa <a href="http://hi.ondraplsek.cz">http://hi.ondraplsek.cz</a></p>
+
+<p>API wrapper pro PHP lze nalézt na <a href="https://github.com/ondrs/Hi">https://github.com/ondrs/Hi</a></p>
+
+<h2>
+<a name="pou%C5%BEit%C3%AD" class="anchor" href="#pou%C5%BEit%C3%AD"><span class="octicon octicon-link"></span></a>Použití</h2>
+
+<p>API rozhraní je přistupné přes URL <a href="http://hi.ondraplsek.cz">http://hi.ondraplsek.cz</a> s následujícími parametry:</p>
+
+<pre><code>name 
+    - textový řetězec 
+    - povinný parametr
+    - 1.pád (nominativ) jména nebo příjmení, pro které chceme zjistit 5.pád (vocativ)
+
+type 
+    - textový řetězec 
+    - může nabývat dvou hodnot: 'name' nebo 'surname'
+    - nepovinný parametr
+    - určuje zda se jedná o jméno nebo příjmení
+
+gender
+    - textový řetězec 
+    - může nabývat dvou hodnot: 'male' nebo 'female'
+    - nepovinný parametr
+    - určuje pohlaví
+</code></pre>
+
+<p>Ukázkové volání</p>
+
+<pre><code>http://hi.ondraplsek.cz?name=plšek&amp;type=surname&amp;gender=male
+</code></pre>
+
+<p>Navrátová hodnota je JSON objekt s následujícmi vlastnostmi:</p>
+
+<pre><code>succes
+    - boolean
+    - true pokud se podařilo nalézt alespoň jedno oslovení, false pokud se nepodařilo nalézt ani jedno oslovení
+
+count
+    - number
+    - počet nalezených oslovení
+
+results
+    - array
+    - pole JSON objektů obsahující oslovení
+
+        - nominativ
+            - string
+            - 1.pád
+
+        - vocativ
+            - string
+            - 5. pád, požadované oslovení
+
+        - type
+            - string, nabývá hodnot 'name' nebo 'surname'
+            - zda se jedná o jméno nebo příjmení
+
+        gender
+            - string, nabývá hodnot 'male' nebo 'female'
+            - určuje pohlaví
+</code></pre>
+
+<p>Ukázkový výstup:</p>
+
+<pre><code>{
+    "success": true,
+    "count": 1,
+    "results": [
+        {
+            "nominativ": "Plšek",
+            "vocativ": "Plšku",
+            "type": "surname",
+            "gender": "male"
+        }
+    ]
+}
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Hi API doukementace maintained by <a href="https://github.com/ondrs">ondrs</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
