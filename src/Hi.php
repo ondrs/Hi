@@ -10,7 +10,7 @@
 namespace ondrs\Hi;
 
 
-class Hi 
+class Hi
 {
 
     /** @var string */
@@ -82,18 +82,22 @@ class Hi
     {
         $url = $this->url . '?name=' . urlencode($name);
 
-        if($this->type !== NULL)
+        if ($this->type !== NULL) {
             $url .= '&type=' . urlencode($this->type);
+        }
 
-        if($gender !== NULL)
+        if ($gender !== NULL) {
             $url .= '&gender=' . urlencode($gender);
+        }
 
         $json = $this->fetchUrl($url);
 
-        if($json->success)
+        if ($json->success) {
             return $json->results[0];
-        else
+        } else {
             return FALSE;
+        }
+
     }
 
 
@@ -106,15 +110,18 @@ class Hi
     {
         $response = @file_get_contents($url);
 
-        if(!$response)
+        if (!$response) {
             throw new Exception("Cannot fetch URL '$url'");
+        }
 
         $json = @json_decode($response);
 
-        if($json)
+        if ($json) {
             return $json;
-        else
+        } else {
             throw new Exception('Malformed JSON');
+        }
+
 
     }
 
