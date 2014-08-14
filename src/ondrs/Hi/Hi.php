@@ -164,9 +164,3 @@ class Hi
     }
 
 }
-
-
-class Exception extends \Exception
-{
-
-}
