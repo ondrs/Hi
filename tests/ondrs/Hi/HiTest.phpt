@@ -1,15 +1,18 @@
 <?php
 
+namespace Test\ondrs\Hi;
 
+use ondrs\Hi\Hi;
 use Tester\Assert;
+use Tester\TestCase;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
 
-class HiTest extends Tester\TestCase
+class HiTest extends TestCase
 {
 
-    /** @var \ondrs\Hi\Hi */
+    /** @var Hi */
     private $hi;
 
     /** @var \Mockista\Mock */
@@ -19,7 +22,7 @@ class HiTest extends Tester\TestCase
     function setUp()
     {
         $this->curlSender = \Mockista\mock('Kdyby\Curl\CurlSender');
-        $this->hi = new \ondrs\Hi\Hi(TEMP_DIR, $this->curlSender);
+        $this->hi = new Hi(TEMP_DIR, $this->curlSender);
     }
 
 
@@ -57,11 +60,10 @@ class HiTest extends Tester\TestCase
         $parsed = $this->hi->parseJson(file_get_contents(__DIR__ . '/data.json'));
         Assert::type('stdClass', $parsed);
 
-        Assert::exception(function() {
+        Assert::exception(function () {
             $this->hi->parseJson('!!');
         }, 'ondrs\Hi\Exception');
     }
-
 
 
 }
