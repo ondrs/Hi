@@ -1,19 +1,29 @@
 {
-    "name": "ondrs/hi",
-    "type": "library",
-    "description": "Czech names and surnames greeting generator API PHP wrapper",
-    "keywords": ["czech", "greeting", "generator", "name", "surname", "php", "api", "wrapper"],
-    "homepage": "http://ondraplsek.cz",
-    "license": ["BSD-3", "GPL-2.0", "GPL-3.0"],
-    "authors": [{
-        "name": "Ondřej Plšek",
-        "homepage": "http://ondraplsek.cz",
-        "role": "Developer"
-    }],
-    "require": {
-        "php": ">=5.4.0"
-    },
-    "autoload": {
-        "classmap": ["src/"]
+  "name": "ondrs/hi",
+  "type": "library",
+  "description": "Czech names and surnames greeting generator API PHP wrapper",
+  "keywords": ["czech", "greeting", "generator", "name", "surname", "php", "api", "wrapper"],
+  "homepage": "http://ondraplsek.cz",
+  "license": ["MIT"],
+  "authors": [
+    {
+      "name": "Ondřej Plšek",
+      "homepage": "http://ondraplsek.cz",
+      "role": "Developer"
     }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "kdyby/curl": "2.2.0",
+    "nette/caching": "2.2.*@dev",
+    "nette/utils": "2.2.*@dev"
+  },
+  "require-dev": {
+    "nette/tester": "1.2.*",
+    "janmarek/mockista": "dev-master",
+    "jakub-onderka/php-parallel-lint": "0.*"
+  },
+  "autoload": {
+    "classmap": ["src/"]
+  }
 }
