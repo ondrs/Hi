@@ -1,4 +1,4 @@
-Hi
+Hi [![Build Status](https://travis-ci.org/ondrs/Hi.svg)](https://travis-ci.org/ondrs/Hi)
 ==============
 
 Czech names and surnames greeting generator API PHP wrapper.
@@ -11,7 +11,7 @@ Instalation
 
 composer.json
 
-    "ondrs/hi": "0.1.0"
+    "ondrs/hi": "0.1.1"
 
 Usage
 -----
