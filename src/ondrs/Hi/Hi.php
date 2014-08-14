@@ -52,9 +52,7 @@ class Hi
         $storage = new FileStorage($cacheDir);
         $this->cache = new Cache($storage);
 
-        if ($curlSender === NULL) {
-            $this->curlSender = new CurlSender();
-        }
+        $this->curlSender = $curlSender !== NULL ? $curlSender : new CurlSender();
     }
 
 

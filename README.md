@@ -11,19 +11,22 @@ Instalation
 
 composer.json
 
-    "ondrs/hi": "dev-master"
+    "ondrs/hi": "0.1.0"
 
 Usage
 -----
 
-Create a new Hi instance. You can specify if you are looking for a name or a surname. The constructor parameter is optional.
+Create a new Hi instance and specify a directory where a downloaded content will be cached - you don't want to call the API for the same name again and again.
+Additionally, you can set if you are looking for a name or a surname.
 
-    $hi = new Hi(Hi::TYPE_SURNAME);
+    $hi = new Hi('path/to/cache/dir');
+    $hi->setType(\ondrs\Hi\Hi::TYPE_SURNAME)
 
 Call appropriate method (mr() or ms()) according to assumed gender.
-If you are not sure about the gender, call the method to() on your instance.
+If you are not sure about the gender, call the method to().
 
     $greeting = $hi->mr('plšek');
+    $greeting = $hi->to('plšek');
 
 You will receive an sdtClass object with 4 properties or a FALSE in the case that greeting generator have not been successful.
 
