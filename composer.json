@@ -15,8 +15,8 @@
   "require": {
     "php": ">=5.4.0",
     "kdyby/curl": "2.2.0",
-    "nette/caching": "2.2.*@dev",
-    "nette/utils": "2.2.*@dev"
+    "nette/caching": ">=2.2.0",
+    "nette/utils": ">=2.2.0"
   },
   "require-dev": {
     "nette/tester": "1.2.*",
