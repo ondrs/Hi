@@ -1,14 +1,6 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: ondrs
- * Date: 13.10.13
- * Time: 18:53
- * To change this template use File | Settings | File Templates.
- */
 
 namespace ondrs\Hi;
-
 
 use Kdyby\Curl\CurlException;
 use Kdyby\Curl\CurlSender;
@@ -19,6 +11,7 @@ use Nette\Utils\FileSystem;
 use Nette\Utils\Json;
 use Nette\Utils\JsonException;
 use Nette\Utils\Strings;
+
 
 class Hi
 {
@@ -32,17 +25,18 @@ class Hi
     /** @var null|string */
     private $type;
 
-    const
-        API_URL = 'http://hi.ondraplsek.cz',
-        TYPE_NAME = 'name',
-        TYPE_SURNAME = 'surname',
 
-        GENDER_MALE = 'male',
-        GENDER_FEMALE = 'female';
+    const API_URL = 'http://hi.ondraplsek.cz';
+
+    const TYPE_NAME = 'name';
+    const TYPE_SURNAME = 'surname';
+
+    const GENDER_MALE = 'male';
+    const GENDER_FEMALE = 'female';
 
 
     /**
-     * @param $cacheDir
+     * @param string $cacheDir
      * @param CurlSender|NULL $curlSender
      */
     public function __construct($cacheDir, CurlSender $curlSender = NULL)
@@ -131,7 +125,7 @@ class Hi
 
     /**
      * @param string $url
-     * @return \stdClass
+     * @return string
      * @throws Exception
      */
     public function fetchUrl($url)
@@ -148,8 +142,8 @@ class Hi
     }
 
     /**
-     * @param $data
-     * @return mixed
+     * @param string $data
+     * @return \stdClass
      * @throws Exception
      */
     public function parseJson($data)
