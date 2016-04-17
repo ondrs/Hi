@@ -8,45 +8,30 @@ use Tester\TestCase;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
-
 class HiTest extends TestCase
 {
 
-    /** @var Hi */
-    private $hi;
-
-    /** @var \Mockista\Mock */
-    private $curlSender;
-
-
-    function setUp()
-    {
-        $this->curlSender = \Mockista\mock('Kdyby\Curl\CurlSender');
-        $this->hi = new Hi(TEMP_DIR, $this->curlSender);
-    }
-
-
     function tearDown()
     {
-        $this->curlSender->assertExpectations();
+        \Mockery::close();
     }
 
 
     function testTo()
     {
-        $response = \Mockista\mock('Kdyby\Curl\Response');
-        $response->expects('getResponse')
+        $simpleCurl = \Mockery::mock('ondrs\Hi\SimpleCurl')
+            ->shouldReceive('get')
             ->once()
-            ->andReturn(file_get_contents(__DIR__ . '/data.json'));
+            ->andReturn(file_get_contents(__DIR__ . '/data.json'))
+            ->getMock();
 
-        $this->curlSender->expects('send')
-            ->once()
-            ->andReturn($response);
+        $hi = new Hi(TEMP_DIR, $simpleCurl);
 
-        $result1 = $this->hi->to('plšek');
-        $result2 = $this->hi->to('plšek');
-        $result3 = $this->hi->to('plšek');
-        $result4 = $this->hi->to('plšek');
+
+        $result1 = $hi->to('plšek');
+        $result2 = $hi->to('plšek');
+        $result3 = $hi->to('plšek');
+        $result4 = $hi->to('plšek');
 
         Assert::same('Plšku', $result2->vocativ);
         Assert::equal($result1, $result2);
@@ -57,11 +42,11 @@ class HiTest extends TestCase
 
     function testParseJson()
     {
-        $parsed = $this->hi->parseJson(file_get_contents(__DIR__ . '/data.json'));
+        $parsed = Hi::parseJson(file_get_contents(__DIR__ . '/data.json'));
         Assert::type('stdClass', $parsed);
 
         Assert::exception(function () {
-            $this->hi->parseJson('!!');
+            Hi::parseJson('!!');
         }, 'ondrs\Hi\Exception');
     }
 
