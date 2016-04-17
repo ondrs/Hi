@@ -2,9 +2,6 @@
 
 namespace ondrs\Hi;
 
-use Kdyby\Curl\CurlException;
-use Kdyby\Curl\CurlSender;
-use Kdyby\Curl\Request;
 use Nette\Caching\Cache;
 use Nette\Caching\Storages\FileStorage;
 use Nette\Utils\FileSystem;
@@ -12,17 +9,16 @@ use Nette\Utils\Json;
 use Nette\Utils\JsonException;
 use Nette\Utils\Strings;
 
-
 class Hi
 {
 
     /** @var \Nette\Caching\Cache */
     private $cache;
+    
+    /** @var SimpleCurl */
+    private $simpleCurl;
 
-    /** @var CurlSender */
-    private $curlSender;
-
-    /** @var null|string */
+    /** @var NULL|string */
     private $type;
 
 
@@ -37,21 +33,19 @@ class Hi
 
     /**
      * @param string $cacheDir
-     * @param CurlSender|NULL $curlSender
+     * @param SimpleCurl $simpleCurl
      */
-    public function __construct($cacheDir, CurlSender $curlSender = NULL)
+    public function __construct($cacheDir, SimpleCurl $simpleCurl)
     {
         FileSystem::createDir($cacheDir);
-
-        $storage = new FileStorage($cacheDir);
-        $this->cache = new Cache($storage);
-
-        $this->curlSender = $curlSender !== NULL ? $curlSender : new CurlSender();
+        
+        $this->cache = new Cache(new FileStorage($cacheDir));
+        $this->simpleCurl = $simpleCurl;
     }
 
 
     /**
-     * @param null|string $type
+     * @param NULL|string $type
      */
     public function setType($type)
     {
@@ -60,7 +54,7 @@ class Hi
 
 
     /**
-     * @return null|string
+     * @return NULL|string
      */
     public function getType()
     {
@@ -90,7 +84,7 @@ class Hi
 
     /**
      * @param string $name
-     * @param null|string $gender
+     * @param NULL|string $gender
      * @return bool|string
      */
     public function to($name, $gender = NULL)
@@ -111,8 +105,8 @@ class Hi
 
         return $this->cache->load($url, function ($dependencies) use ($url) {
 
-            $data = $this->fetchUrl($url);
-            $json = $this->parseJson($data);
+            $data = $this->simpleCurl->get($url);
+            $json = self::parseJson($data);
 
             $result = $json->success ? $json->results[0] : FALSE;
 
@@ -124,29 +118,11 @@ class Hi
 
 
     /**
-     * @param string $url
-     * @return string
-     * @throws Exception
-     */
-    public function fetchUrl($url)
-    {
-        try {
-            $request = new Request($url);
-            $response = $this->curlSender->send($request);
-
-            return $response->getResponse();
-        } catch (CurlException $e) {
-            throw new Exception($e->getMessage());
-        }
-
-    }
-
-    /**
      * @param string $data
      * @return \stdClass
      * @throws Exception
      */
-    public function parseJson($data)
+    public static function parseJson($data)
     {
         try {
             return Json::decode($data);

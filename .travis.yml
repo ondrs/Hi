@@ -3,10 +3,12 @@ language: php
 php:
   - 5.4
   - 5.5
+  - 5.6
+  - 7
 
 before_script:
   - composer self-update
   - composer install --no-interaction --prefer-source --dev
   - ./vendor/bin/parallel-lint -e php,phpt --exclude vendor .
 
-script: VERBOSE=true ./vendor/bin/tester -c ./tests/php.ini-unix -j 40 ./tests
+script: VERBOSE=true ./vendor/bin/tester -c ./tests/php-unix.ini -j 40 ./tests
