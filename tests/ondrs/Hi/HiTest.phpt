@@ -21,11 +21,18 @@ class HiTest extends TestCase
     {
         $simpleCurl = \Mockery::mock('ondrs\Hi\SimpleCurl')
             ->shouldReceive('get')
-            ->once()
             ->andReturn(file_get_contents(__DIR__ . '/data.json'))
             ->getMock();
 
-        $hi = new Hi(TEMP_DIR, $simpleCurl);
+        $iStorage = \Mockery::mock('Nette\Caching\IStorage')
+            ->shouldReceive('read')
+            ->shouldReceive('lock')
+            ->shouldReceive('remove')
+            ->shouldReceive('write')
+            ->shouldReceive('read')
+            ->getMock();
+
+        $hi = new Hi($iStorage, $simpleCurl);
 
 
         $result1 = $hi->to('plšek');

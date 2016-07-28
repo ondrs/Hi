@@ -16,11 +16,11 @@ composer.json
 Usage
 -----
 
-Create a new Hi instance and specify a directory where a downloaded content will be cached - you don't want to call the API for the same name again and again.
+Create a new Hi instance and specify a caching storage where the downloaded content will be cached - you don't want to call the API for the same name again and again.
 Additionally, you can set if you are looking for a name or a surname.
 
-    $hi = new Hi('path/to/cache/dir');
-    $hi->setType(\ondrs\Hi\Hi::TYPE_SURNAME)
+    $hi = new ondrs\Hi\Hi(new Nette\Caching\FileStorage('path/to/cache/dir'));
+    $hi->setType(ondrs\Hi\Hi::TYPE_SURNAME)
 
 Call appropriate method (mr() or ms()) according to assumed gender.
 If you are not sure about the gender, call the method to().

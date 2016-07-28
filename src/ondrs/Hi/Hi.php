@@ -3,6 +3,7 @@
 namespace ondrs\Hi;
 
 use Nette\Caching\Cache;
+use Nette\Caching\IStorage;
 use Nette\Caching\Storages\FileStorage;
 use Nette\Utils\FileSystem;
 use Nette\Utils\Json;
@@ -32,14 +33,12 @@ class Hi
 
 
     /**
-     * @param string $cacheDir
+     * @param IStorage $storage
      * @param SimpleCurl|NULL $simpleCurl
      */
-    public function __construct($cacheDir, SimpleCurl $simpleCurl = NULL)
+    public function __construct(IStorage $storage, SimpleCurl $simpleCurl = NULL)
     {
-        FileSystem::createDir($cacheDir);
-        
-        $this->cache = new Cache(new FileStorage($cacheDir));
+        $this->cache = new Cache($storage);
         
         $this->simpleCurl = $simpleCurl === NULL
             ? new SimpleCurl
