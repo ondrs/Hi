@@ -105,12 +105,22 @@ class Hi
             $url .= '&gender=' . urlencode($gender);
         }
 
-        return $this->cache->load($url, function ($dependencies) use ($url) {
+        return $this->cache->load($url, function ($dependencies) use ($url, $name) {
 
             $data = $this->simpleCurl->get($url);
             $json = self::parseJson($data);
+            $result = FALSE;
 
-            $result = $json->success ? $json->results[0] : FALSE;
+            if ($json->success) {
+                $result = $json->results[0];
+
+                foreach ($json->results as $value) {
+                    if (Strings::lower($value->nominativ) === $name) {
+                        $result = $value;
+                        break;
+                    }
+                }
+            }
 
             $this->cache->save($url, $result, $dependencies);
 
