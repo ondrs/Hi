@@ -38,7 +38,7 @@ class Hi
      */
     public function __construct(IStorage $storage, SimpleCurl $simpleCurl = NULL)
     {
-        $this->cache = new Cache($storage);
+        $this->cache = new Cache($storage, 'ondrs.Hi');
         
         $this->simpleCurl = $simpleCurl === NULL
             ? new SimpleCurl
