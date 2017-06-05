@@ -38,7 +38,7 @@ class Hi
      */
     public function __construct(IStorage $storage, SimpleCurl $simpleCurl = NULL)
     {
-        $this->cache = new Cache($storage);
+        $this->cache = new Cache($storage, str_replace('\\', '.', __CLASS__));
         
         $this->simpleCurl = $simpleCurl === NULL
             ? new SimpleCurl
