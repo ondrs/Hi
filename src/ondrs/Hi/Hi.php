@@ -66,7 +66,7 @@ class Hi
 
     /**
      * @param string $name
-     * @return bool|string
+     * @return bool|\stdClass
      */
     public function mr($name)
     {
@@ -76,7 +76,7 @@ class Hi
 
     /**
      * @param string $name
-     * @return bool|string
+     * @return bool|\stdClass
      */
     public function ms($name)
     {
@@ -87,7 +87,7 @@ class Hi
     /**
      * @param string $name
      * @param NULL|string $gender
-     * @return bool|string
+     * @return bool|\stdClass
      */
     public function to($name, $gender = NULL)
     {
