@@ -15,7 +15,7 @@ class Hi
 
     /** @var \Nette\Caching\Cache */
     private $cache;
-    
+
     /** @var SimpleCurl */
     private $simpleCurl;
 
@@ -32,14 +32,10 @@ class Hi
     const GENDER_FEMALE = 'female';
 
 
-    /**
-     * @param IStorage $storage
-     * @param SimpleCurl|NULL $simpleCurl
-     */
     public function __construct(IStorage $storage, SimpleCurl $simpleCurl = NULL)
     {
         $this->cache = new Cache($storage, str_replace('\\', '.', __CLASS__));
-        
+
         $this->simpleCurl = $simpleCurl === NULL
             ? new SimpleCurl
             : $simpleCurl;
@@ -49,7 +45,7 @@ class Hi
     /**
      * @param NULL|string $type
      */
-    public function setType($type)
+    public function setType(?string $type)
     {
         $this->type = $type;
     }
