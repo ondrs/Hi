@@ -15,7 +15,7 @@ class SimpleCurl
      * @return string
      * @throws Exception
      */
-    public function get($url)
+    public function get(string $url): string
     {
         $curl = curl_init($url);
         

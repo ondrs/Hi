@@ -3,9 +3,8 @@
 namespace ondrs\Hi;
 
 use Nette\Caching\Cache;
-use Nette\Caching\IStorage;
-use Nette\Caching\Storages\FileStorage;
-use Nette\Utils\FileSystem;
+
+use Nette\Caching\Storage;
 use Nette\Utils\Json;
 use Nette\Utils\JsonException;
 use Nette\Utils\Strings;
@@ -13,7 +12,7 @@ use Nette\Utils\Strings;
 class Hi
 {
 
-    /** @var \Nette\Caching\Cache */
+    /** @var Cache */
     private $cache;
 
     /** @var SimpleCurl */
@@ -32,20 +31,18 @@ class Hi
     const GENDER_FEMALE = 'female';
 
 
-    public function __construct(IStorage $storage, SimpleCurl $simpleCurl = NULL)
+    public function __construct(Storage $storage, SimpleCurl $simpleCurl = NULL)
     {
         $this->cache = new Cache($storage, str_replace('\\', '.', __CLASS__));
 
-        $this->simpleCurl = $simpleCurl === NULL
-            ? new SimpleCurl
-            : $simpleCurl;
+        $this->simpleCurl = $simpleCurl ?? new SimpleCurl;
     }
 
 
     /**
      * @param NULL|string $type
      */
-    public function setType(?string $type)
+    public function setType(?string $type): void
     {
         $this->type = $type;
     }
@@ -54,7 +51,7 @@ class Hi
     /**
      * @return NULL|string
      */
-    public function getType()
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -64,7 +61,7 @@ class Hi
      * @param string $name
      * @return bool|\stdClass
      */
-    public function mr($name)
+    public function mr(string $name)
     {
         return $this->to($name, self::GENDER_MALE);
     }
@@ -74,18 +71,17 @@ class Hi
      * @param string $name
      * @return bool|\stdClass
      */
-    public function ms($name)
+    public function ms(string $name)
     {
         return $this->to($name, self::GENDER_FEMALE);
     }
 
 
     /**
-     * @param string $name
-     * @param NULL|string $gender
      * @return bool|\stdClass
+     * @throws \Throwable
      */
-    public function to($name, $gender = NULL)
+    public function to(string $name, ?string $gender = NULL)
     {
         $name = Strings::fixEncoding($name);
         $name = Strings::trim($name);
@@ -126,11 +122,9 @@ class Hi
 
 
     /**
-     * @param string $data
-     * @return \stdClass
      * @throws Exception
      */
-    public static function parseJson($data)
+    public static function parseJson(string $data): \stdClass
     {
         try {
             return Json::decode($data);
