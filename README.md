@@ -1,5 +1,8 @@
-Hi [![Total Downloads](https://poser.pugx.org/ondrs/hi/downloads)](https://packagist.org/packages/ondrs/hi) [![Build Status](https://travis-ci.org/ondrs/Hi.svg)](https://travis-ci.org/ondrs/Hi) [![Latest Stable Version](https://poser.pugx.org/ondrs/hi/v/stable)](https://packagist.org/packages/ondrs/hi)
+Hi
 ==============
+[![Total Downloads](https://poser.pugx.org/ondrs/hi/downloads)](https://packagist.org/packages/ondrs/hi)
+[![CircleCI](https://circleci.com/gh/ondrs/Hi/tree/master.svg?style=svg)](https://circleci.com/gh/ondrs/Hi/tree/master)
+[![Latest Stable Version](https://poser.pugx.org/ondrs/hi/v/stable)](https://packagist.org/packages/ondrs/hi)
 
 Czech names and surnames greeting generator API PHP wrapper.
 Service is available at the url http://hi.ondraplsek.cz
