@@ -22,7 +22,7 @@ class Hi
     private $type;
 
 
-    const API_URL = 'http://hi.ondraplsek.cz';
+    const API_URL = 'https://hi.ondraplsek.cz';
 
     const TYPE_NAME = 'name';
     const TYPE_SURNAME = 'surname';
