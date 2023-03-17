@@ -14,7 +14,7 @@ Instalation
 
 composer.json
 
-    "ondrs/hi": "1.0.0"
+    "ondrs/hi": "1.0.1"
 
 Usage
 -----
