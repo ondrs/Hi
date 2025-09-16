@@ -5,16 +5,16 @@ Hi
 [![Latest Stable Version](https://poser.pugx.org/ondrs/hi/v/stable)](https://packagist.org/packages/ondrs/hi)
 
 Czech names and surnames greeting generator API PHP wrapper.
-Service is available at the url http://hi.ondraplsek.cz
+Service is available at the url https://hi.ondraplsek.cz
 
 
 
-Instalation
+Installation
 -----
 
 composer.json
 
-    "ondrs/hi": "1.0.1"
+    "ondrs/hi": "1.0.2"
 
 Usage
 -----
